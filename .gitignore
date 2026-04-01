@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out/
+build/
+*.tsbuildinfo
+
+# Lock files
+*.lock
+bun.lock
+bun.lockb
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage & test output
+coverage/
+.nyc_output/
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/todos/
+.claude/worktrees/
+.claude/teams/
+.claude/tasks/
