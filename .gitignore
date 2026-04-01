@@ -7,11 +7,6 @@ out/
 build/
 *.tsbuildinfo
 
-# Lock files
-*.lock
-bun.lock
-bun.lockb
-
 # OS files
 .DS_Store
 Thumbs.db

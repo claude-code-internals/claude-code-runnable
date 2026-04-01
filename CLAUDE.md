@@ -84,6 +84,26 @@ const getTeammateUtils = () => require('./utils/teammate.js') as typeof import('
 | `src/tasks/` | Task management system for background work |
 | `src/utils/swarm/` | Multi-agent swarm coordination |
 | `vendor/` | Native NAPI modules (audio capture, image processing, URL handling) |
+| `docs/en/` | English documentation (default, referenced in README) |
+| `docs/cn/` | Chinese documentation (中文文档) |
+
+## Documentation
+
+All project documentation lives under `docs/` with mandatory bilingual support:
+
+```
+docs/
+├── en/          # English (default language, linked from README)
+│   └── *.md
+└── cn/          # 中文 (each file mirrors its English counterpart)
+    └── *.md
+```
+
+**Rules**:
+- README and external references link to `docs/en/` by default, with a language toggle pointing to `docs/cn/`
+- Every document must exist in **both** `en/` and `cn/` before commit — if only one language version exists, translate and create the other before committing
+- File names and directory structure must be identical across `en/` and `cn/` (only content differs)
+- Each document should include a header link to its counterpart: `[中文版](../cn/<file>)` / `[English](../en/<file>)`
 
 ## Patterns
 
