@@ -433,13 +433,13 @@ graph TB
 
 ```mermaid
 sequenceDiagram
-    participant Loop as Query Loop
+    participant QL as Query Loop
     participant Orch as Tool Orchestration
     participant Perm as Permission Engine
     participant Tool as Tool Implementation
     participant Hook as Hook System
 
-    Loop->>Orch: runTools(toolUseBlocks)
+    QL->>Orch: runTools(toolUseBlocks)
 
     Orch->>Orch: partitionToolCalls<br/>(serial vs concurrent batches)
 
@@ -447,14 +447,14 @@ sequenceDiagram
         loop Each tool in batch
             Orch->>Tool: validateInput(input)
             alt Invalid
-                Orch-->>Loop: Error result
+                Orch-->>QL: Error result
             end
 
             Orch->>Hook: Pre-tool-use hooks
             Orch->>Perm: checkPermissions(input, context)
 
             alt Denied
-                Orch-->>Loop: Rejection result
+                Orch-->>QL: Rejection result
             else Ask user
                 Orch->>Perm: Prompt user
             end
@@ -471,7 +471,7 @@ sequenceDiagram
         end
     end
 
-    Orch-->>Loop: All tool results + context modifiers
+    Orch-->>QL: All tool results + context modifiers
 ```
 
 ### Tool Concurrency Model
@@ -951,24 +951,24 @@ graph TB
 
 ```mermaid
 sequenceDiagram
-    participant Loop as Query Loop
+    participant QL as Query Loop
     participant AC as Auto-Compact
     participant Fork as Forked Agent
     participant API as Anthropic API
 
-    Loop->>AC: calculateTokenWarningState()
-    AC-->>Loop: isAboveAutoCompactThreshold = true
+    QL->>AC: calculateTokenWarningState()
+    AC-->>QL: isAboveAutoCompactThreshold = true
 
-    Loop->>Fork: runForkedAgent(CompactSystemPrompt)
+    QL->>Fork: runForkedAgent(CompactSystemPrompt)
     Fork->>API: Summarize conversation (with cache sharing)
     API-->>Fork: Summary response
-    Fork-->>Loop: compactionResult
+    Fork-->>QL: compactionResult
 
-    Loop->>Loop: buildPostCompactMessages()
-    Note over Loop: Summary + file restorations (5 files)<br/>+ skill injections (5 skills)<br/>+ MCP instructions delta
+    QL->>QL: buildPostCompactMessages()
+    Note over QL: Summary + file restorations (5 files)<br/>+ skill injections (5 skills)<br/>+ MCP instructions delta
 
-    Loop->>Loop: Insert CompactBoundaryMessage
-    Loop->>Loop: Reset tracking, continue loop
+    QL->>QL: Insert CompactBoundaryMessage
+    QL->>QL: Reset tracking, continue loop
 ```
 
 ---
