@@ -8,6 +8,39 @@ A buildable and runnable source project reconstructed from the `@anthropic-ai/cl
 
 ![Claude Code runnable screenshot](./docs/images/claude-code-runnable.png)
 
+## Architecture & Internals Documentation
+
+Deep dive into Claude Code's architecture, implementation details, and core mechanisms:
+
+### Foundation & Architecture (Chapters 1-4)
+
+| # | Document | Description |
+|---|----------|-------------|
+| 1 | [Foundation](docs/en/01_foundation.md) | Project overview, tech stack, directory structure, dependency graph, and quick-start guidance |
+| 2 | [Architecture](docs/en/02_architecture.md) | Layered architecture, entry points, React/Ink rendering, message flow, and state management |
+| 3 | [Workflow](docs/en/03_workflow.md) | User interaction loop, conversation lifecycle, streaming responses, tool execution chain, and context compaction triggers |
+| 4 | [Core Mechanisms](docs/en/04_core_mechanisms.md) | Message formats, serialization, token counting, cost tracking, conversation history, and config merging |
+
+### Module Deep Dive (Chapters 5-10)
+
+| # | Document | Description |
+|---|----------|-------------|
+| 5 | [Tool System](docs/en/05_module_tool_system.md) | Tool base design, tool taxonomy, registration and execution pipeline, input validation, and output normalization |
+| 6 | [Permission System](docs/en/05_module_permission.md) | Permission engine, rule matching, authorization dialogs, sandbox isolation, and security tiers |
+| 7 | [Agent System](docs/en/05_module_agent.md) | Sub-agent lifecycle, task dispatch, async management, and result aggregation |
+| 8 | [MCP Integration](docs/en/05_module_mcp.md) | Model Context Protocol client and server implementation, tool bridging, resource access, and socket pooling |
+| 9 | [Bridge Layer](docs/en/05_module_bridge.md) | Communication with Claude Web, Bridge client architecture, message serialization, and connection management |
+| 10 | [Context & Memory](docs/en/05_module_context.md) | Context window strategy, compaction, memory persistence, and onboarding state detection |
+
+### Summary & Evaluation (Chapters 11-12)
+
+| # | Document | Description |
+|---|----------|-------------|
+| 11 | [Native Modules](docs/en/06_native_modules.md) | Native binary distribution, Sharp image pipeline, ripgrep integration, audio capture, and cross-platform adaptation |
+| 12 | [Evaluation](docs/en/07_evaluation.md) | Architectural strengths and weaknesses, design review, scalability analysis, comparisons, and recommendations |
+
+[View full index →](docs/en/index.md)
+
 ## Features
 
 - **Zero source modifications** — all original `src/` and `vendor/` files are untouched; every fix is an additive new file

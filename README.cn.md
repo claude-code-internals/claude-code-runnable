@@ -8,6 +8,39 @@
 
 ![Claude Code 运行示意图](./docs/images/claude-code-runnable.png)
 
+## 架构与内部机制文档
+
+深入解析 Claude Code 的架构、实现细节和核心机制：
+
+### 基础架构（1-4）
+
+| 序号 | 文档 | 内容概要 |
+|------|------|----------|
+| 1 | [项目概述](docs/cn/01_foundation.md) | 项目身份、技术栈选型、目录结构深度解剖、依赖知识图谱、快速上手指南 |
+| 2 | [整体架构](docs/cn/02_architecture.md) | 分层架构设计、入口点分流策略、React/Ink 渲染管线、消息流转模型、状态管理体系 |
+| 3 | [业务工作流](docs/cn/03_workflow.md) | 用户交互主循环、对话生命周期、流式响应处理、工具调用链、上下文压缩触发机制 |
+| 4 | [核心数据结构与算法](docs/cn/04_core_mechanisms.md) | 消息格式与序列化、Token 计数与成本追踪、对话历史存储、配置层级合并算法 |
+
+### 模块深潜（5-10）
+
+| 序号 | 文档 | 内容概要 |
+|------|------|----------|
+| 5 | [工具系统](docs/cn/05_module_tool_system.md) | Tool 基类设计、工具分类体系、注册与执行管道、输入校验与输出规范化 |
+| 6 | [权限系统](docs/cn/05_module_permission.md) | 权限引擎架构、规则匹配算法、用户授权对话框、沙箱隔离策略、安全分级模型 |
+| 7 | [Agent 子进程系统](docs/cn/05_module_agent.md) | 子 Agent 创建与生命周期、任务分派策略、异步 Agent 管理、结果聚合机制 |
+| 8 | [MCP 协议集成](docs/cn/05_module_mcp.md) | Model Context Protocol 客户端与服务端实现、工具桥接、资源读取、Socket 连接池 |
+| 9 | [Bridge 通信层](docs/cn/05_module_bridge.md) | 与 Web 版 Claude 的通信协议、Bridge 客户端架构、消息序列化、连接状态管理 |
+| 10 | [上下文与内存管理](docs/cn/05_module_context.md) | 上下文窗口策略、Compact 压缩算法、Memory 持久化、项目 Onboarding 状态检测 |
+
+### 总结评估（11-12）
+
+| 序号 | 文档 | 内容概要 |
+|------|------|----------|
+| 11 | [原生模块与性能优化](docs/cn/06_native_modules.md) | vendor 原生二进制分发策略、Sharp 图像处理管线、ripgrep 搜索集成、音频采集模块、跨平台适配 |
+| 12 | [架构师定论](docs/cn/07_evaluation.md) | 架构优劣势评估、设计决策复盘、可扩展性分析、与同类工具对比、改进建议 |
+
+[查看完整索引 →](docs/cn/index.md)
+
 ## 特性
 
 - **零源码修改**：所有原始 `src/` 和 `vendor/` 文件都保持不变，所有修复都通过新增文件实现
