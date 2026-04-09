@@ -1,60 +1,60 @@
 # Claude Code Runnable
 
-<p align="right"><strong>English</strong> | <a href="./README.cn.md">中文</a></p>
+<p align="right"><a href="./README.en.md">English</a> | <strong>中文</strong></p>
 
-A buildable and runnable source project reconstructed from the `@anthropic-ai/claude-code@2.1.88` npm package (with `cli.js.map`). Runtime is Bun. **Zero modifications to any original `src/` or `vendor/` files.**
+这是一个从 `@anthropic-ai/claude-code@2.1.88` npm 发布包（包含 `cli.js.map`）还原出来的、可构建且可运行的源代码项目。运行时使用 Bun。**不修改任何原始 `src/` 或 `vendor/` 文件。**
 
-> The leaked source code cannot run directly — it is missing build configs, type stubs, native module shims, and resource files. This repository fills those gaps with ~90 new files while keeping the original 1,884 source files untouched.
+> 泄露出的源代码本身无法直接运行，因为缺少构建配置、类型桩、原生模块 shim 和资源文件。本仓库通过新增约 90 个文件补齐这些缺口，同时保持原始的 1,884 个源码文件不变。
 
-![Claude Code runnable screenshot](./docs/images/claude-code-runnable.png)
+![Claude Code 运行示意图](./docs/images/claude-code-runnable.png)
 
-## Architecture & Internals Documentation
+## 架构与内部实现文档
 
-Deep dive into Claude Code's architecture, implementation details, and core mechanisms:
+深入了解 Claude Code 的架构、实现细节和核心机制：
 
-### Foundation & Architecture (Chapters 1-4)
+### 基础与架构（第 1-4 章）
 
-| # | Document | Description |
-|---|----------|-------------|
-| 1 | [Foundation](docs/en/01_foundation.md) | Project overview, tech stack, directory structure, dependency graph, and quick-start guidance |
-| 2 | [Architecture](docs/en/02_architecture.md) | Layered architecture, entry points, React/Ink rendering, message flow, and state management |
-| 3 | [Workflow](docs/en/03_workflow.md) | User interaction loop, conversation lifecycle, streaming responses, tool execution chain, and context compaction triggers |
-| 4 | [Core Mechanisms](docs/en/04_core_mechanisms.md) | Message formats, serialization, token counting, cost tracking, conversation history, and config merging |
+| # | 文档 | 描述 |
+|---|------|------|
+| 1 | [基础](docs/cn/01_foundation.md) | 项目概述、技术栈、目录结构、依赖关系图和快速入门指导 |
+| 2 | [架构](docs/cn/02_architecture.md) | 分层架构、入口点、React/Ink 渲染、消息流和状态管理 |
+| 3 | [工作流](docs/cn/03_workflow.md) | 用户交互循环、会话生命周期、流式响应、工具执行链和上下文压缩触发 |
+| 4 | [核心机制](docs/cn/04_core_mechanisms.md) | 消息格式、序列化、Token 计数、成本跟踪、会话历史和配置合并 |
 
-### Module Deep Dive (Chapters 5-10)
+### 模块深入（第 5-10 章）
 
-| # | Document | Description |
-|---|----------|-------------|
-| 5 | [Tool System](docs/en/05_module_tool_system.md) | Tool base design, tool taxonomy, registration and execution pipeline, input validation, and output normalization |
-| 6 | [Permission System](docs/en/05_module_permission.md) | Permission engine, rule matching, authorization dialogs, sandbox isolation, and security tiers |
-| 7 | [Agent System](docs/en/05_module_agent.md) | Sub-agent lifecycle, task dispatch, async management, and result aggregation |
-| 8 | [MCP Integration](docs/en/05_module_mcp.md) | Model Context Protocol client and server implementation, tool bridging, resource access, and socket pooling |
-| 9 | [Bridge Layer](docs/en/05_module_bridge.md) | Communication with Claude Web, Bridge client architecture, message serialization, and connection management |
-| 10 | [Context & Memory](docs/en/05_module_context.md) | Context window strategy, compaction, memory persistence, and onboarding state detection |
+| # | 文档 | 描述 |
+|---|------|------|
+| 5 | [工具系统](docs/cn/05_module_tool_system.md) | 工具基础设计、工具分类、注册与执行管线、输入验证和输出规范化 |
+| 6 | [权限系统](docs/cn/05_module_permission.md) | 权限引擎、规则匹配、授权对话框、沙箱隔离和安全层级 |
+| 7 | [Agent 系统](docs/cn/05_module_agent.md) | 子 Agent 生命周期、任务分发、异步管理和结果聚合 |
+| 8 | [MCP 集成](docs/cn/05_module_mcp.md) | Model Context Protocol 客户端与服务端实现、工具桥接、资源访问和连接池 |
+| 9 | [Bridge 层](docs/cn/05_module_bridge.md) | 与 Claude Web 的通信、Bridge 客户端架构、消息序列化和连接管理 |
+| 10 | [上下文与记忆](docs/cn/05_module_context.md) | 上下文窗口策略、压缩、记忆持久化和引导状态检测 |
 
-### Summary & Evaluation (Chapters 11-12)
+### 总结与评估（第 11-12 章）
 
-| # | Document | Description |
-|---|----------|-------------|
-| 11 | [Native Modules](docs/en/06_native_modules.md) | Native binary distribution, Sharp image pipeline, ripgrep integration, audio capture, and cross-platform adaptation |
-| 12 | [Evaluation](docs/en/07_evaluation.md) | Architectural strengths and weaknesses, design review, scalability analysis, comparisons, and recommendations |
+| # | 文档 | 描述 |
+|---|------|------|
+| 11 | [原生模块](docs/cn/06_native_modules.md) | 原生二进制分发、Sharp 图像管线、ripgrep 集成、音频捕获和跨平台适配 |
+| 12 | [评估](docs/cn/07_evaluation.md) | 架构优缺点、设计评审、可扩展性分析、对比和建议 |
 
-[View full index →](docs/en/index.md)
+[查看完整目录 →](docs/cn/index.md)
 
-## Features
+## 特性
 
-- **Zero source modifications** — all original `src/` and `vendor/` files are untouched; every fix is an additive new file
-- **Full build system** — `bun run build` produces a 19.5MB single-file bundle (`dist/cli.js`)
-- **Complete Ink TUI** — the full interactive terminal UI works, identical to official Claude Code
-- **Headless mode** — `--print` / `--output-format` for scripting and CI
-- **Feature flags** — compile-time flags via `bun:bundle` polyfill, toggle in a single config file
-- **Cross-platform** — works on macOS, Linux, and Windows (Git Bash required on Windows)
+- **零源码修改**：所有原始 `src/` 和 `vendor/` 文件都保持不变，所有修复都通过新增文件实现
+- **完整构建系统**：`bun run build` 会生成 19.5MB 的单文件 bundle（`dist/cli.js`）
+- **完整 Ink TUI**：完整的交互式终端界面可运行，行为与官方 Claude Code 一致
+- **无头模式**：支持 `--print` / `--output-format`，可用于脚本和 CI
+- **Feature flags**：通过 `bun:bundle` polyfill 提供编译期 flag，并集中在一个配置文件中开关
+- **跨平台**：支持 macOS、Linux 和 Windows（Windows 需要 Git Bash）
 
-## Quick Start
+## 快速开始
 
-### 1. Install Bun
+### 1. 安装 Bun
 
-This project requires [Bun](https://bun.sh) as its runtime.
+本项目使用 [Bun](https://bun.sh) 作为运行时。
 
 ```bash
 # macOS / Linux
@@ -67,60 +67,60 @@ brew install bun
 powershell -c "irm bun.sh/install.ps1 | iex"
 ```
 
-### 2. Install dependencies
+### 2. 安装依赖
 
 ```bash
 bun install
 ```
 
-### 3. Configure environment
+### 3. 配置环境变量
 
 ```bash
 cp .env.example .env
-# Edit .env and set your ANTHROPIC_API_KEY
+# 编辑 .env，并设置你的 ANTHROPIC_API_KEY
 ```
 
-### 4. Run
+### 4. 运行
 
 ```bash
-# Interactive TUI mode
+# 交互式 TUI 模式
 bun run dev
 
-# Headless mode (single prompt)
+# 无头模式（单条提示词）
 bun run dev -- -p "hello" --output-format text
 
-# Check version
+# 查看版本
 bun run dev -- --version
 # => 2.1.88-local (Claude Code)
 ```
 
-### 5. Build (optional)
+### 5. 构建（可选）
 
 ```bash
 bun run build
 bun dist/cli.js --version
 ```
 
-## Project Structure
+## 项目结构
 
-```
+```text
 claude-code-runnable/
-├── bootstrap-entry.ts      # Entry point (sets MACRO globals -> imports cli.tsx)
-├── preload.ts              # Bun preload plugin (bun:bundle polyfill)
+├── bootstrap-entry.ts      # 入口文件（设置 MACRO 全局变量 -> 导入 cli.tsx）
+├── preload.ts              # Bun preload 插件（bun:bundle polyfill）
 ├── config/
-│   └── features.ts         # Single source of truth for feature flags & plugin
-├── bunfig.toml             # Bun config (loads preload.ts)
-├── package.json            # Dependencies & scripts (dev/start/build)
-├── tsconfig.json           # TypeScript config
-├── .env.example            # Environment variable template
+│   └── features.ts         # Feature flag 与插件工厂的唯一配置源
+├── bunfig.toml             # Bun 配置（加载 preload.ts）
+├── package.json            # 依赖与脚本（dev/start/build）
+├── tsconfig.json           # TypeScript 配置
+├── .env.example            # 环境变量模板
 ├── scripts/
-│   └── build.ts            # Bun build script (externals + define + plugin)
-├── src/                    # Original restored TS/TSX source (1,884 files)
-│   ├── entrypoints/cli.tsx # Real CLI entry point
-│   ├── stubs/              # bun-bundle.d.ts type declaration
+│   └── build.ts            # Bun build 脚本（externals + define + plugin）
+├── src/                    # 还原后的原始 TS/TSX 源码（1,884 个文件）
+│   ├── entrypoints/cli.tsx # 实际 CLI 入口
+│   ├── stubs/              # bun-bundle.d.ts 类型声明
 │   └── ...
-├── vendor/                 # 4 native module TS binding layers
-├── shims/                  # 7 stub packages (file: protocol references)
+├── vendor/                 # 4 个原生模块的 TS 绑定层
+├── shims/                  # 7 个 stub 包（通过 file: 协议引用）
 │   ├── @ant/claude-for-chrome-mcp/
 │   ├── @ant/computer-use-mcp/
 │   ├── @ant/computer-use-swift/
@@ -128,113 +128,113 @@ claude-code-runnable/
 │   ├── color-diff-napi/
 │   ├── modifiers-napi/
 │   └── url-handler-napi/
-└── dist/                   # Build output (bun run build)
-    └── cli.js              # ~19.5MB single-file bundle
+└── dist/                   # 构建产物（bun run build）
+    └── cli.js              # 约 19.5MB 的单文件 bundle
 ```
 
-## Changes From Original Source
+## 相比原始源码的变化
 
-All changes are **additive new files** — zero modifications to existing source files.
+所有变化都是**新增文件**，**不修改任何已有源码文件**。
 
-### Root Config Files (9 files)
+### 根配置文件（9 个文件）
 
-| File | Purpose |
-|------|---------|
-| `package.json` | Dependencies, scripts (`dev`/`start`/`build`/`typecheck`) |
-| `tsconfig.json` | TypeScript config with `bun:bundle` path alias |
-| `bunfig.toml` | Bun preload config |
-| `preload.ts` | Bun plugin polyfilling `bun:bundle` feature flags at runtime |
-| `bootstrap-entry.ts` | Sets `globalThis.MACRO` with env overrides, imports CLI |
-| `config/features.ts` | Single source of truth for feature flag set & plugin factory |
-| `scripts/build.ts` | Bun build script with externals list & MACRO defines |
-| `.env.example` | Environment variable template |
-| `src/stubs/bun-bundle.d.ts` | TypeScript type declaration for `bun:bundle` |
+| 文件 | 作用 |
+|------|------|
+| `package.json` | 依赖与脚本（`dev`/`start`/`build`/`typecheck`） |
+| `tsconfig.json` | 带 `bun:bundle` 路径别名的 TypeScript 配置 |
+| `bunfig.toml` | Bun preload 配置 |
+| `preload.ts` | 在运行时为 `bun:bundle` feature flag 提供 polyfill 的 Bun 插件 |
+| `bootstrap-entry.ts` | 设置带环境变量覆盖的 `globalThis.MACRO`，然后导入 CLI |
+| `config/features.ts` | Feature flag 集合与插件工厂的唯一配置源 |
+| `scripts/build.ts` | 带 externals 列表与 MACRO define 的 Bun 构建脚本 |
+| `.env.example` | 环境变量模板 |
+| `src/stubs/bun-bundle.d.ts` | `bun:bundle` 的 TypeScript 类型声明 |
 
-### Shim Packages (7 packages, 16 files)
+### Shim 包（7 个包，16 个文件）
 
-Local `file:` protocol packages replacing missing Anthropic-internal and native modules:
+这些本地 `file:` 协议包用于替代缺失的 Anthropic 内部模块和原生模块：
 
-| Package | Strategy |
-|---------|----------|
-| `@ant/claude-for-chrome-mcp` | MCP server stub with tool catalog |
-| `@ant/computer-use-mcp` | Full type system + session flow shim (22 tools) |
-| `@ant/computer-use-swift` | 297-line stub, partially functional on macOS |
-| `@ant/computer-use-input` | Input API stub with platform detection |
-| `color-diff-napi` | Re-exports from `src/native-ts/` TypeScript port |
-| `modifiers-napi` | Re-exports from `vendor/` TS binding |
-| `url-handler-napi` | Re-exports from `vendor/` TS binding |
+| 包 | 策略 |
+|----|------|
+| `@ant/claude-for-chrome-mcp` | 带工具目录的 MCP server stub |
+| `@ant/computer-use-mcp` | 带完整类型系统与会话流程 shim（22 个工具） |
+| `@ant/computer-use-swift` | 297 行 stub，在 macOS 上具备部分功能 |
+| `@ant/computer-use-input` | 带平台判断的输入 API stub |
+| `color-diff-napi` | 重新导出 `src/native-ts/` 中的 TypeScript 实现 |
+| `modifiers-napi` | 重新导出 `vendor/` 中的 TS 绑定 |
+| `url-handler-napi` | 重新导出 `vendor/` 中的 TS 绑定 |
 
-### SDK & Type Stubs (4 files)
+### SDK 与类型桩（4 个文件）
 
-| File | Purpose |
-|------|---------|
-| `src/entrypoints/sdk/coreTypes.generated.ts` | SDK message types |
-| `src/entrypoints/sdk/runtimeTypes.ts` | SDK runtime types (15 types) |
-| `src/entrypoints/sdk/settingsTypes.generated.ts` | SDK settings type |
-| `src/entrypoints/sdk/toolTypes.ts` | SDK tool definition type |
+| 文件 | 作用 |
+|------|------|
+| `src/entrypoints/sdk/coreTypes.generated.ts` | SDK 消息类型 |
+| `src/entrypoints/sdk/runtimeTypes.ts` | SDK 运行时类型（15 个类型） |
+| `src/entrypoints/sdk/settingsTypes.generated.ts` | SDK settings 类型 |
+| `src/entrypoints/sdk/toolTypes.ts` | SDK 工具定义类型 |
 
-### Tool Stubs (6 files)
+### 工具桩（6 个文件）
 
-| File | Strategy |
+| 文件 | 策略 |
+|------|------|
+| `src/tools/TungstenTool/TungstenTool.ts` | 禁用工具（`isEnabled=false`） |
+| `src/tools/TungstenTool/TungstenLiveMonitor.tsx` | 返回 `null` 的 React 组件 |
+| `src/tools/WorkflowTool/constants.ts` | 工具名常量 |
+| `src/tools/REPLTool/REPLTool.ts` | `null` 导出（feature-gated） |
+| `src/tools/SuggestBackgroundPRTool/` | `null` 导出（feature-gated） |
+| `src/tools/VerifyPlanExecutionTool/` | `null` 导出（feature-gated） |
+
+### Feature-gated 服务桩（7 个文件）
+
+这些是编译期开关后面的 no-op 实现：
+
+| 文件 | 对应开关 |
 |------|----------|
-| `src/tools/TungstenTool/TungstenTool.ts` | Disabled tool (isEnabled=false) |
-| `src/tools/TungstenTool/TungstenLiveMonitor.tsx` | Null React component |
-| `src/tools/WorkflowTool/constants.ts` | Tool name constant |
-| `src/tools/REPLTool/REPLTool.ts` | `null` export (feature-gated) |
-| `src/tools/SuggestBackgroundPRTool/` | `null` export (feature-gated) |
-| `src/tools/VerifyPlanExecutionTool/` | `null` export (feature-gated) |
-
-### Feature-Gated Service Stubs (7 files)
-
-No-op implementations for features behind compile-time flags:
-
-| File | Gating Flag |
-|------|-------------|
 | `src/services/compact/cachedMicrocompact.ts` | `CACHED_MICROCOMPACT` |
 | `src/services/compact/snipCompact.ts` | `HISTORY_SNIP` |
 | `src/services/compact/snipProjection.ts` | `HISTORY_SNIP` |
 | `src/services/contextCollapse/index.ts` | `CONTEXT_COLLAPSE` |
 | `src/services/contextCollapse/operations.ts` | `CONTEXT_COLLAPSE` |
 | `src/services/contextCollapse/persist.ts` | `CONTEXT_COLLAPSE` |
-| `src/localRecoveryCli.ts` | Standalone recovery CLI |
+| `src/localRecoveryCli.ts` | 独立恢复 CLI |
 
-### Component & Command Stubs (6 files)
+### 组件与命令桩（6 个文件）
 
-| File | Purpose |
-|------|---------|
-| `src/components/agents/SnapshotUpdateDialog.tsx` | Null React component |
-| `src/assistant/AssistantSessionChooser.tsx` | Null React component |
-| `src/commands/assistant/assistant.ts` | Empty assistant command |
-| `src/commands/assistant/index.ts` | Re-export barrel |
-| `src/commands/agents-platform/index.ts` | Empty command array |
-| `src/utils/protectedNamespace.ts` | Returns false |
+| 文件 | 作用 |
+|------|------|
+| `src/components/agents/SnapshotUpdateDialog.tsx` | 返回 `null` 的 React 组件 |
+| `src/assistant/AssistantSessionChooser.tsx` | 返回 `null` 的 React 组件 |
+| `src/commands/assistant/assistant.ts` | 空 assistant 命令 |
+| `src/commands/assistant/index.ts` | 重导出 barrel |
+| `src/commands/agents-platform/index.ts` | 空命令数组 |
+| `src/utils/protectedNamespace.ts` | 固定返回 false |
 
-### Other Resource Files (7 files)
+### 其他资源文件（7 个文件）
 
-| File | Purpose |
-|------|---------|
-| `src/ink/devtools.ts` | Empty module (fire-and-forget import) |
-| `src/ink/global.d.ts` | Empty ambient declaration |
-| `src/types/connectorText.ts` | Connector text block types |
-| `src/utils/filePersistence/types.ts` | File persistence constants & interfaces |
-| `src/utils/ultraplan/prompt.txt` | Planning prompt resource |
-| `src/utils/permissions/yolo-classifier-prompts/` | 3 classifier prompt files |
+| 文件 | 作用 |
+|------|------|
+| `src/ink/devtools.ts` | 空模块（用于 fire-and-forget 导入） |
+| `src/ink/global.d.ts` | 空环境声明 |
+| `src/types/connectorText.ts` | Connector 文本块类型 |
+| `src/utils/filePersistence/types.ts` | 文件持久化常量与接口 |
+| `src/utils/ultraplan/prompt.txt` | 规划提示词资源 |
+| `src/utils/permissions/yolo-classifier-prompts/` | 3 个分类器提示词文件 |
 
-### Skill Files (29 files)
+### Skill 文件（29 个文件）
 
-| Directory | Content |
-|-----------|---------|
-| `src/skills/bundled/claude-api/` | 26 files — API usage examples (Python, Go, Java, etc.) |
-| `src/skills/bundled/verify/` | 3 files — Verification skill |
+| 目录 | 内容 |
+|------|------|
+| `src/skills/bundled/claude-api/` | 26 个文件：API 使用示例（Python、Go、Java 等） |
+| `src/skills/bundled/verify/` | 3 个文件：验证 skill |
 
-## Known Limitations
+## 已知限制
 
-- **Native modules** (audio-capture, image-processor) have no original Rust/C++ source; shims provide graceful fallbacks
-- **Feature-flagged features** (VOICE_MODE, BRIDGE_MODE, COORDINATOR_MODE, etc.) are disabled by default; enabling them may require additional stubs
-- **No test files** — the original bundle did not include tests
-- **Anthropic-internal features** (`USER_TYPE === 'ant'`) are empty stubs (REPLTool, agents-platform, etc.)
-- **Commander v12** — downgraded from v14 for multi-char short flag compatibility (`-d2e`)
+- **原生模块**（audio-capture、image-processor）没有原始 Rust/C++ 源码；当前 shim 仅提供优雅降级
+- **Feature-flag 功能**（VOICE_MODE、BRIDGE_MODE、COORDINATOR_MODE 等）默认关闭；开启后可能还需要补更多 stub
+- **没有测试文件**：原始 bundle 不包含测试
+- **Anthropic 内部功能**（`USER_TYPE === 'ant'`）目前是空 stub（例如 REPLTool、agents-platform 等）
+- **Commander v12**：为了兼容多字符短选项 `-d2e`，从 v14 降级到了 v12
 
-## Disclaimer
+## 免责声明
 
-This repository is based on the Claude Code source code leaked from the Anthropic npm registry on 2026-03-31. All original source code is copyrighted by [Anthropic](https://www.anthropic.com). For learning and research purposes only.
+本仓库基于 2026-03-31 从 Anthropic npm registry 泄露的 Claude Code 源代码。所有原始源码版权归 [Anthropic](https://www.anthropic.com) 所有。仅供学习与研究使用。
