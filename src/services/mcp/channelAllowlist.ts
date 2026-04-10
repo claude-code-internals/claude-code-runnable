@@ -49,7 +49,7 @@ export function getChannelAllowlist(): ChannelAllowlistEntry[] {
  * Default false; GrowthBook 5-min refresh.
  */
 export function isChannelsEnabled(): boolean {
-  return getFeatureValue_CACHED_MAY_BE_STALE('tengu_harbor', false)
+  return true
 }
 
 /**

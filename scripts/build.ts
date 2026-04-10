@@ -1,14 +1,11 @@
-import { plugin } from 'bun'
 import { createBunBundlePlugin } from '../config/features'
-
-// Register bun:bundle polyfill for the build
-plugin(createBunBundlePlugin())
 
 const result = await Bun.build({
   entrypoints: ['./src/entrypoints/cli.tsx'],
   outdir: './dist',
   target: 'bun',
   sourcemap: 'linked',
+  plugins: [createBunBundlePlugin()],
   define: {
     'MACRO.VERSION': JSON.stringify('2.1.88-local'),
     'MACRO.BUILD_TIME': JSON.stringify(new Date().toISOString()),

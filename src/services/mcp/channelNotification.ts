@@ -205,6 +205,12 @@ export function gateChannelServer(
     }
   }
 
+  // DEV BYPASS: skip disabled/auth/policy/session/allowlist gates for
+  // local channel development (API-key users, custom base URLs, etc.)
+  if (process.env.ANTHROPIC_BASE_URL) {
+    return { action: 'register' }
+  }
+
   // Overall runtime gate. After capability so normal MCP servers never hit
   // this path. Before auth/policy so the killswitch works regardless of
   // session state.

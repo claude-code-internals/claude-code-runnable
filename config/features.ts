@@ -6,6 +6,7 @@ export const ENABLED_FEATURES = new Set([
   // 'HISTORY_SNIP',
   // 'REACTIVE_COMPACT',
   // 'COMMIT_ATTRIBUTION',
+  'KAIROS_CHANNELS',
   // 'KAIROS',
   // 'COORDINATOR_MODE',
   // 'VOICE_MODE',
@@ -18,21 +19,23 @@ export const ENABLED_FEATURES = new Set([
 ])
 
 export function createBunBundlePlugin(): BunPlugin {
-  const featuresJson = JSON.stringify([...ENABLED_FEATURES])
   return {
-    name: 'bun-bundle-polyfill',
+    name: 'bun-bundle-feature-replace',
     setup(build) {
-      build.onResolve({ filter: /^bun:bundle$/ }, () => ({
-        path: 'bun-bundle-polyfill',
-        namespace: 'bun-bundle-ns',
-      }))
-      build.onLoad({ filter: /.*/, namespace: 'bun-bundle-ns' }, () => ({
-        contents: `
-          const ENABLED_FEATURES = new Set(${featuresJson});
-          export function feature(name) { return ENABLED_FEATURES.has(name); }
-        `,
-        loader: 'js',
-      }))
+      // Bun's native bun:bundle feature() cannot be overridden by plugins.
+      // Instead, do source-level text replacement: for each enabled feature,
+      // replace `feature('NAME')` with `true`; for all other feature() calls,
+      // replace with `false`. This runs before Bun's own compile-time eval.
+      build.onLoad({ filter: /\.(ts|tsx)$/ }, async (args) => {
+        let contents = await Bun.file(args.path).text()
+        if (!contents.includes('feature(')) return undefined
+        for (const feat of ENABLED_FEATURES) {
+          contents = contents.replaceAll(`feature('${feat}')`, 'true')
+        }
+        // Remaining feature() calls → false
+        contents = contents.replace(/feature\('[A-Z_]+'\)/g, 'false')
+        return { contents, loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts' }
+      })
     },
   }
 }
