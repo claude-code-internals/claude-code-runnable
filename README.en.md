@@ -57,6 +57,9 @@ Deep dive into Claude Code's architecture, implementation details, and core mech
 This project requires [Bun](https://bun.sh) as its runtime.
 
 ```bash
+# npm
+npm install -g bun
+
 # macOS / Linux
 curl -fsSL https://bun.sh/install | bash
 
@@ -77,7 +80,17 @@ bun install
 
 ```bash
 cp .env.example .env
-# Edit .env and set your ANTHROPIC_API_KEY
+# Edit .env and set ANTHROPIC_AUTH_TOKEN and ANTHROPIC_BASE_URL
+```
+
+You can also use [cc-switch](https://github.com/farion1231/cc-switch) to manage and switch between multiple configurations.
+
+It is recommended to add the following to `~/.claude.json` to skip the first-launch login confirmation:
+
+```json
+{
+  "hasCompletedOnboarding": true
+}
 ```
 
 ### 4. Run
@@ -94,11 +107,49 @@ bun run dev -- --version
 # => 2.1.88-local (Claude Code)
 ```
 
-### 5. Build (optional)
+### 5. Build & Install (optional)
 
 ```bash
 bun run build
-bun dist/cli.js --version
+
+# Run directly from build output
+bun dist/cli.js
+```
+
+The build output is in `.release/npm/`. Install it globally:
+
+```bash
+npm install -g ./.release/npm
+
+# Now available anywhere
+open-claude-code
+open-claude-code-bun    # Bun entrypoint
+```
+
+Or run directly without installing:
+
+```bash
+bun .release/npm/cli-bun.js
+node .release/npm/cli-node.js
+```
+
+### 6. Publish to an internal registry (optional)
+
+> Only needed if you have an internal npm registry and want teammates to share the package.
+
+1. Edit `scripts/build/release-manifest.ts` and replace the `publishConfig.registry` placeholder with your real registry URL.
+2. Re-run `bun run build`.
+3. Publish:
+
+```bash
+npm publish ./.release/npm
+```
+
+Once published, other machines can install it with:
+
+```bash
+npm install -g @internal/open-claude-code
+open-claude-code
 ```
 
 ## Project Structure

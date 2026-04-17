@@ -17,6 +17,6 @@
     },
     "types": ["bun-types"]
   },
-  "include": ["src/**/*", "vendor/**/*", "shims/**/*"],
+  "include": ["src/**/*", "vendor/**/*", "shims/**/*", "scripts/**/*"],
   "exclude": ["node_modules", "dist"]
 }

@@ -4,7 +4,8 @@ node_modules/
 # Build output
 dist/
 out/
-build/
+/build/
+.release/
 *.tsbuildinfo
 
 # OS files

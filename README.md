@@ -57,6 +57,9 @@
 本项目使用 [Bun](https://bun.sh) 作为运行时。
 
 ```bash
+# npm
+npm install -g bun
+
 # macOS / Linux
 curl -fsSL https://bun.sh/install | bash
 
@@ -70,6 +73,9 @@ powershell -c "irm bun.sh/install.ps1 | iex"
 ### 2. 安装依赖
 
 ```bash
+# 国内用户建议先配置镜像源
+npm config set registry https://registry.npmmirror.com
+
 bun install
 ```
 
@@ -77,7 +83,17 @@ bun install
 
 ```bash
 cp .env.example .env
-# 编辑 .env，并设置你的 ANTHROPIC_API_KEY
+# 编辑 .env，设置 ANTHROPIC_AUTH_TOKEN 和 ANTHROPIC_BASE_URL
+```
+
+也可以使用 [cc-switch](https://github.com/farion1231/cc-switch) 来管理和切换多套配置。
+
+建议在 `~/.claude.json` 中添加以下配置来跳过首次启动的登录确认：
+
+```json
+{
+  "hasCompletedOnboarding": true
+}
 ```
 
 ### 4. 运行
@@ -94,11 +110,49 @@ bun run dev -- --version
 # => 2.1.88-local (Claude Code)
 ```
 
-### 5. 构建（可选）
+### 5. 构建与安装（可选）
 
 ```bash
 bun run build
-bun dist/cli.js --version
+
+# 从构建产物直接启动
+bun dist/cli.js
+```
+
+构建产物在 `.release/npm/`，可以直接全局安装：
+
+```bash
+npm install -g ./.release/npm
+
+# 安装后即可在任意位置启动
+open-claude-code
+open-claude-code-bun    # Bun 入口
+```
+
+也可以不安装，直接运行：
+
+```bash
+bun .release/npm/cli-bun.js
+node .release/npm/cli-node.js
+```
+
+### 6. 发布到内部 registry（可选）
+
+> 仅当你有内部 npm registry 且希望团队共享使用时才需要此步。
+
+1. 修改 `scripts/build/release-manifest.ts` 中的 `publishConfig.registry` 为真实地址。
+2. 重新运行 `bun run build`。
+3. 发布：
+
+```bash
+npm publish ./.release/npm
+```
+
+发布后，其他机器即可安装：
+
+```bash
+npm install -g @internal/open-claude-code
+open-claude-code
 ```
 
 ## 项目结构
